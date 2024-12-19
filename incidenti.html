@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF u blokadi | Incidenti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="row" id="nav-row">
+            <a href="index.html">
+                <img src="assets/logo.jpg" alt="ETF u blokadi">
+            </a>
+            <div id="burger">
+                <div class="line">&nbsp;</div>
+                <div class="space">&nbsp;</div>
+                <div class="line">&nbsp;</div>
+                <div class="space">&nbsp;</div>
+                <div class="line">&nbsp;</div>
+            </div>
+        </div>
+        <ul class="offscreen" id="menu">
+            <a href="index.html">Početna</a>
+            <a href="incidenti.html">Incidenti</a>
+            <a href="najave.html">Najave</a>
+            <a href="podrzali.html">Podržali su nas</a>
+            <a href="kontakt.html">Kontakt</a>
+        </ul>
+    </nav>
+    <main>
+        
+    </main>
+    <footer>
+        <p>&copy; 2024 Plenum studenata Elektrotehničkog fakulteta Univerzieta u Beogradu</p>
+        <a href="mailto:plenum@etf.rs">plenum@etf.rs</a>
+    </footer>
+
+    <script>
+        document.getElementById("burger").addEventListener("click", (e) => {
+            document.querySelector("nav").classList.toggle("col");
+            document.getElementById("menu").classList.toggle("offscreen");
+        });
+    </script>
+</body>
+</html>
