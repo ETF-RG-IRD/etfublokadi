@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: 'Arial', sans-serif;
+    --background: #acacac;
+    --primary: #3b2d2d;
+    --secondary: #1b1b1b;
+    --accent: #2e2e2e;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--background);
+    color: var(--secondary);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: var(--primary);
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 12px;
+    font-weight: bold;
+}
+
+nav img {
+    border-radius: 50%;
+    width: 60px;
+}
+
+#burger {
+    display: none;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+#nav-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: min(100%, 300px);
+}
+
+footer {
+    background-color: var(--primary);
+    color: var(--secondary);
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer a {
+    color: var(--secondary);
+}
+
+footer a::before {
+    content: '✉️';
+}
+
+main {
+    width: min(70vw, 1800px);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pocetna {
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    padding: 20px;
+}
+
+.pocetna h2 {
+    color: black;
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.text-box {
+    border: 2px solid var(--accent);
+    padding: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--background);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.text-box:hover {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+.text-box .details {
+    display: none;
+}
+
+.text-box.expanded .details {
+    display: block;
+}
+
+.podrzali {
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    padding: 20px;
+}
+
+.najave, .incidenti, .mediji, .pitanja, .kontakt {
+    cursor: default;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    padding: 20px;
+}
+
+
+.najave h2, .incidenti h2, .mediji h2, .podrzali h2, .pitanja h2, .kontakt h2 {
+    color: black;
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.najava {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    cursor: default;
+    transition: background-color 0.2s ease;
+}
+
+.najava:hover, .incident:hover, .medij:hover, .pitanje:hover {
+    background-color: var(--accent);
+}
+
+.podrzao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    cursor: default;
+    transition: background-color 0.2s ease;
+}
+
+.podrzao img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.podrzao:hover {
+    background-color: var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        padding: 12px 0;
+    }
+
+    #burger {
+        display: block;
+        height: 25px;
+        width: 30px;
+    }
+
+    .line, .space {
+        height: 5px;
+        width: 30px;
+    }
+
+    .line {
+        background-color: var(--secondary);
+    }
+
+    .offscreen {
+        display: none;
+    }
+}
