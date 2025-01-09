@@ -1,43 +1,46 @@
 //Burger for mobile, nav
 document.getElementById("burger").addEventListener("click", (e) => {
-    document.querySelector("nav").classList.toggle("col");
-    document.getElementById("menu").classList.toggle("offscreen");
+  document.querySelector("nav").classList.toggle("col");
+  document.getElementById("menu").classList.toggle("offscreen");
 });
 
-// Expandable text boxes
 document.querySelectorAll('.text-box').forEach(box => {
-    box.addEventListener('click', () => {
-        box.classList.toggle('expanded');
-    });
+  const details = box.querySelector('.details');
+  box.addEventListener('click', () => {
+      document.querySelectorAll('.text-box').forEach(b => {
+          if (b !== box) {
+              b.classList.remove('expanded');
+              b.querySelector('.details').style.maxHeight = null;
+          }
+      });
+      box.classList.toggle('expanded');
+      if (box.classList.contains('expanded')) {
+          details.style.maxHeight = details.scrollHeight + 'px';
+      } else {
+          details.style.maxHeight = null;
+      }
+  });
 });
 
-let lastScrollY = window.scrollY;
-
-// The initial position of the nav menu
-const navMenu = document.getElementById("nav-menu");
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav ul a');
 
 window.addEventListener("scroll", () => {
-  const currentScrollY = window.scrollY;
-  // add a bool
-    
+const currentScrollY = window.scrollY;
 
-  // If the user scrolls up, show the nav menu
-  if (currentScrollY < lastScrollY) {
-      navMenu.style.transform = `translateY(+${currentScrollY}px)`; // Move the nav up as you scroll down
-        //z-index to 9999 to make sure it's on top
-        navMenu.style.zIndex = "999";
-
-
-
-
-  } else {
-      // If the user scrolls down, hide the nav menu
-      navMenu.style.transform = "translateY(-100%)";
-        //z-index to 0 to make sure it's on bottom
-        navMenu.style.zIndex = "0";
-        
-  }
-
-  // Update the last scroll position
-  lastScrollY = currentScrollY;
+// Highlight the current section in the navigation
+highlightCurrentSection(currentScrollY);
 });
+
+function highlightCurrentSection(currentScrollY) {
+sections.forEach((section, index) => {
+  const sectionTop = section.offsetTop;
+  const sectionHeight = section.offsetHeight;
+  if (currentScrollY >= sectionTop - sectionHeight / 1.5 && currentScrollY < sectionTop + sectionHeight - sectionHeight / 1.5) {
+    navLinks.forEach(link => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
+    sections.forEach(sec => sec.classList.remove('focused'));
+    section.classList.add('focused');
+  }
+});
+}
