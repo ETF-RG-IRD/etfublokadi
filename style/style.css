@@ -13,6 +13,12 @@
     --text: #000000;
 }
 
+html {
+    scroll-behavior: smooth;
+
+    
+}
+
 body {
     min-height: 100vh;
     display: flex;
@@ -32,10 +38,10 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 5px;
+    padding: 6px 20px;
     background-color: var(--primary);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
-    opacity: 0.9;
+    
+    opacity: 0.97;
     transition: opacity 0.3s ease, transform 0.2s ease;
     position: fixed;
     width: 100%;
@@ -46,6 +52,12 @@ nav {
 nav:hover {
     opacity: 1;
     transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+nav.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 nav ul a {
@@ -125,10 +137,74 @@ footer a::before {
     content: '✉️';
 }
 
+.static-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 elements per row */
+    height : 90vh;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(180deg, var(--primary) 60%, white);
+    color: var(--text);
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 998;
+}
+
+.static-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid white; /* Adjust the height to make the arrow larger */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+.static-header h1 {
+    font-size: 2.5em;
+    margin-top: 50px;
+    cursor: default;
+    transition: font-size 0.2s ease;
+}
+
+.static-header p {
+    font-size: 1.2em;
+    margin-bottom: 0;
+    cursor: default;
+    transition: font-size 0.2s ease;
+}
+
+.static-header h1.hover-active,
+.static-header p.hover-active {
+    font-size: 5em;
+    cursor : default;
+}
+
+.static-header p.hover-active {
+    font-size: 3em;
+    cursor : default;
+}
+
+.static-header h1.scroll-active {
+    font-size: 2.5еm;
+    cursor : default;
+}
+
+.static-header p.scroll-active {
+    font-size: 3em;
+    cursor : default;
+}
+
+
 main {
     width: min(70vw, 1800px);
     margin: 0 auto;
-    padding: 4%;
 }
 
 .section {
@@ -145,7 +221,7 @@ main {
 
 .section:hover,
 .section.focused {
-    opacity: 0.95;
+    opacity: 1;
     transform: scale(1.01);
     backdrop-filter: blur(5%);
     background-color: rgba(255, 255, 255, 0.3);
@@ -160,12 +236,38 @@ main {
     font-family: 'Montserrat', sans-serif; /* Use a modern font */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
     padding: 5px 15px; /* Add padding for better spacing */
-    background: var(--secondary); /* Use the secondary color for background */
-    background-image: linear-gradient(45deg, var(--accent) 50%, transparent 50%); /* Add a gradient background */
     border-radius: 5px; /* Add rounded corners */
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    position: relative; /* Required for the underline */
+    transition: background-color 0.2s ease; /* Add a smooth transition */
+}
 
-    transition: background-image 0.5s ease; /* Add a smooth transition */
+.section h2::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 4px;
+    bottom: -2px;
+    left: 0px;
+    background-image: linear-gradient(90deg, #7a0707 40%, #0e2a47 , #ffffff);
+    border-top-right-radius: 255px; /* Add rounded corners to the top-right */
+    border-bottom-right-radius:5px; /* Add rounded corners to the bottom-right */
+    
+    transform-origin: left;
+    transition: transform 0.25s ease-out, transform-origin 0.25s ease-out, background-color 0.2s ease; /* Add a smooth transition */
+}
+
+.section h2:hover::after,
+.section h2.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.25s ease-out, transform-origin 0.25s ease-out, background-color 0.2s ease; /* Add a smooth transition */
+}
+
+.section h2:hover {
+    background : var(--accent); /* Change the background color on hover */
+    transition: background-color 0.2s ease; /* Add a smooth transition */
+
 }
 
 
@@ -174,16 +276,23 @@ main {
     margin: 10px 0;
     width: 100%;
     cursor: pointer;
-    background-color: var(--secondary);
-    color: var(--background);
+    background-color: gainsboro;
+    color: black;
     transition: background-color 0.2s ease, color 0.2s ease;
     overflow: hidden; /* Ensure content doesn't overflow */
 }
 
 .text-box:hover {
+    
     background-color: var(--accent);
-    color: var(--background);
+    color: white;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
 }
+
+
+
+
 
 .text-box .details {
     display: block;
