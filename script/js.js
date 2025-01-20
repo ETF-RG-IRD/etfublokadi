@@ -72,8 +72,8 @@ function applyScrollEffectOnHeader(currentScrollY) {
 
   if (currentScrollY >= headerTop && currentScrollY < headerTop + headerHeight) {
     const scrollPosition = currentScrollY - headerTop;
-    const totalElements = paragraphs.length + 1; // Including h1
-    const elementHeight = headerHeight / (totalElements * 2); // Reduce divisor to make changes happen faster
+    const totalElements = paragraphs.length -2; // Including h1
+    const elementHeight = headerHeight / (totalElements * 3); // Reduce divisor to make changes happen faster
 
     if (scrollPosition > 0) {
       h1.classList.remove('scroll-active');
@@ -143,10 +143,49 @@ function resetInactivityTimeout() {
     if (window.scrollY !== 0) { // Check if not at the top of the page
       document.querySelector("nav").classList.add("hidden");
     }
-  }, 3000); // Set to 3 seconds
+  }, 1000); // Set to 3 seconds
 }
 
 window.addEventListener("mousemove", resetInactivityTimeout);
 window.addEventListener("keydown", resetInactivityTimeout);
 window.addEventListener("scroll", resetInactivityTimeout);
 resetInactivityTimeout(); // Initialize the timeout
+
+// Change background images of static-header every 5 seconds
+const backgroundImages = [
+  'assets/background/1.jpg',
+  'assets/background/2.jpg',
+  'assets/background/3.jpg',
+  'assets/background/4.jpg',
+  'assets/background/5.jpg'
+];
+
+let currentImageIndex = 0;
+
+function changeBackgroundImage() {
+  const header = document.querySelector('.static-header');
+  header.classList.add('flash');
+  setTimeout(() => {
+    header.style.backgroundImage = `url(${backgroundImages[currentImageIndex]})`;
+    currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+    header.classList.remove('flash');
+  }, 250); // Half of the flash animation duration
+}
+
+setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
+
+// Initialize the first background image
+changeBackgroundImage();
+
+// Hide loading screen when content is fully loaded
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  const randomLoadingTime = Math.random() * (2000 - 400) + 400; // Random time between 0.5s and 2s
+  setTimeout(() => {
+    loadingScreen.style.opacity = 0;
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      document.body.classList.add('loaded');
+    }, 100); // Match the duration of the fade-out transition
+  }, randomLoadingTime);
+});

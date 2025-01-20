@@ -15,8 +15,6 @@
 
 html {
     scroll-behavior: smooth;
-
-    
 }
 
 body {
@@ -32,6 +30,49 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+}
+
+#content {
+    filter: blur(10px);
+    transition: filter 0.1s ease;
+}
+
+body.loaded #content {
+    filter: blur(0);
+    transition: filter 0.1s ease;
+}
+
+/* Loading screen styles */
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 8px solid var(--secondary);
+    border-top: 8px solid var(--accent);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-screen p {
+    margin-top: 20px;
+    color: var(--text);
+    font-size: 1.5em;
 }
 
 nav {
@@ -140,17 +181,19 @@ footer a::before {
 .static-header {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 elements per row */
-    height : 90vh;
+    height: 90vh;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: linear-gradient(180deg, var(--primary) 60%, white);
+    background-size: fill;
+    background-position: center; /* Center the background image */
     color: var(--text);
     text-align: center;
     padding: 50px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 998;
+    color : white;
 }
 
 .static-header::after {
@@ -392,6 +435,17 @@ main {
 
 .podrzao:hover {
     background-color: var(--accent);
+}
+
+
+@keyframes flash {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(2); }
+    100% { filter: brightness(1); }
+}
+
+.flash {
+    animation: flash 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
