@@ -477,4 +477,26 @@ main {
     .offscreen {
         display: none;
     }
+
+    .static-header p {
+        display : none;
+    }
+
+    .static-header h1 {
+        font-size: 2em;
+        margin-top: 50px;
+        align-items: center;
+        justify-content: center;
+
+        cursor: default;
+        transition: font-size 0.2s ease;
+
+    }
+
+
+
+    main {
+        width: 100%;
+        padding : 0 10px;
+    }
 }
