@@ -160,6 +160,13 @@ const backgroundImages = [
   'assets/background/5.jpg'
 ];
 
+
+// Preload background images
+backgroundImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
 let currentImageIndex = 0;
 
 function changeBackgroundImage() {
