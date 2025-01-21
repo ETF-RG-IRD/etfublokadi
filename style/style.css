@@ -81,13 +81,20 @@ nav {
     justify-content: space-around;
     padding: 6px 20px;
     background-color: var(--primary);
-    
     opacity: 0.97;
-    transition: opacity 0.3s ease, transform 0.2s ease;
-    position: fixed;
-    width: 100%;
     top: 0;
+    position: absolute;
+    width: 100%;
     z-index: 999;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+nav.sticky {
+    position: fixed;
+    top: 0;
+    width : 100%;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 nav:hover {
@@ -492,7 +499,15 @@ main {
         transition: font-size 0.2s ease;
 
     }
+    body{
+        background-image: url('../assets/background/bg.JPG');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
 
+
+    }
 
 
     main {

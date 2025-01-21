@@ -196,3 +196,16 @@ window.addEventListener('load', () => {
     }, 100); // Match the duration of the fade-out transition
   }, randomLoadingTime);
 });
+
+window.onscroll = function() { moveNavDown() };
+
+var nav = document.querySelector("nav");
+
+function moveNavDown() {
+  // Get the scroll amount
+  let scrollPosition = window.scrollY;
+
+  // Set the top position of the nav relative to the scroll
+  nav.style.position = "absolute";
+  nav.style.top = scrollPosition + "px";
+}
