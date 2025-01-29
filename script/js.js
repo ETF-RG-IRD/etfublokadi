@@ -218,11 +218,11 @@ function moveNavDown() {
 document.addEventListener("DOMContentLoaded", function () {
   // Public Instagram post URLs (replace with real post URLs)
   const instagramPosts = [
-      "https://www.instagram.com/p/DFX00ORgbDx/",
-      "https://www.instagram.com/p/DFYwQkMqJCs/",
-      "https://www.instagram.com/p/DFXeyzdoiYX/",
-      "https://www.instagram.com/p/DFOOTOrKILP/",
-      "https://www.instagram.com/p/DFXkHisN08N/"
+      "https://www.instagram.com/etfublokadi/",
+      "https://www.instagram.com/grf.blokade/",
+      "https://www.instagram.com/blokada.arh.bg/",
+      "https://www.instagram.com/masinci.u.blokadi/",
+      "https://www.instagram.com/tmf.blokada/"
   ];
 
   // Shuffle and select 5 random posts
