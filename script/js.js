@@ -11,6 +11,7 @@ document.querySelectorAll('.text-box').forEach(box => {
           if (b !== box) {
               b.classList.remove('expanded');
               b.querySelector('.details').style.maxHeight = null;
+              b.querySelector('.details').scrollTop = 0;
           }
       });
       box.classList.toggle('expanded');
@@ -18,6 +19,7 @@ document.querySelectorAll('.text-box').forEach(box => {
           details.style.maxHeight = details.scrollHeight + 'px';
       } else {
           details.style.maxHeight = null;
+          details.scrollTop = 0;
       }
   });
 });
@@ -157,7 +159,10 @@ const backgroundImages = [
   'assets/background/2.jpg',
   'assets/background/3.jpg',
   'assets/background/4.jpg',
-  'assets/background/5.jpg'
+  'assets/background/5.jpg',
+  'assets/background/6.jpg',
+  'assets/background/7.jpg',
+  'assets/background/8.jpg'
 ];
 
 
@@ -209,3 +214,36 @@ function moveNavDown() {
   nav.style.position = "absolute";
   nav.style.top = scrollPosition + "px";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Public Instagram post URLs (replace with real post URLs)
+  const instagramPosts = [
+      "https://www.instagram.com/p/DFX00ORgbDx/",
+      "https://www.instagram.com/p/DFYwQkMqJCs/",
+      "https://www.instagram.com/p/DFXeyzdoiYX/",
+      "https://www.instagram.com/p/DFOOTOrKILP/",
+      "https://www.instagram.com/p/DFXkHisN08N/"
+  ];
+
+  // Shuffle and select 5 random posts
+  const selectedPosts = instagramPosts.sort(() => 0.5 - Math.random()).slice(0, 5);
+
+  // Insert embedded posts into the section
+  const feedContainer = document.getElementById("instagram-feed");
+  selectedPosts.forEach(post => {
+      const div = document.createElement("div");
+      div.classList.add("medij");
+      div.innerHTML = `
+          <blockquote class="instagram-media" data-instgrm-permalink="${post}" data-instgrm-version="14">
+              <a href="${post}" target="_blank">View Instagram Post</a>
+          </blockquote>
+      `;
+      feedContainer.appendChild(div);
+  });
+
+  // Load Instagram embed script
+  const script = document.createElement("script");
+  script.src = "https://www.instagram.com/embed.js";
+  script.async = true;
+  document.body.appendChild(script);
+});
